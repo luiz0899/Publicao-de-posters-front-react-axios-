@@ -34,13 +34,13 @@ const Home = () => {
 
   return (// aqui me retorna os conteudos da api "id" ,"title" , "body" 
     <div className="home">
-      <h1>Últimos posts </h1>
-      {posts.length === 0 ? <p>Carregando...  </p> : (
+      <h1> Ultimos Posters </h1>
+      {posts.length === 0 ? <p> Não a poster no momento  </p> : (
         posts.map((post) => (
           <div className="post" key = {post.id}>
 
             <h2>
-              {post.titulo + " - " +post.id} 
+              {post.titulo} 
             </h2>
             <p>{post.conteudo} </p>
             <Link to = {`/posts/${post.id}`} className="btnLerMais">
