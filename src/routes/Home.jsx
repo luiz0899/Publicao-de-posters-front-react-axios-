@@ -6,17 +6,17 @@ import blogFetch from "../axios/config";
 
 const Home = () => {
 
-  const [posts, setPosts] = useState([]); //funciona como metodos get e set
+  const [posts, setTodos] = useState([]); //funciona como metodos get e set
 
-  const getPosts = async () => { // resgata os dados da api 
+  const getTodos = async () => { // resgata os dados da api 
 
     try {
 
-      const response = await blogFetch.get("/posts");
+      const response = await blogFetch.get("/todos");
 
       const data = response.data;
 
-      setPosts(data);
+      setTodos(data);
 
     } catch (error) {
 
@@ -28,7 +28,7 @@ const Home = () => {
 
   useEffect(() => { //  aqui é onde eu chamo meus metodos 
 
-    getPosts();
+    getTodos();
 
   }, []);
 
@@ -40,9 +40,9 @@ const Home = () => {
           <div className="post" key = {post.id}>
 
             <h2>
-              {post.title + " - " +post.id} 
+              {post.titulo + " - " +post.id} 
             </h2>
-            <p>{post.body} </p>
+            <p>{post.conteudo} </p>
             <Link to = {`/posts/${post.id}`} className="btnLerMais">
                Ler mais... 
             </Link> 
