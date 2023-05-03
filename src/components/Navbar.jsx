@@ -9,7 +9,7 @@ const Navbar = () => {
         </h2>
         <ul className="fundo">
             <li>
-                <Link to = {'/'}>Home</Link>
+                <Link to = {'/mod'}>Mod</Link>
             </li>
             <li>
                 <Link to = {'/new'} className="newbtn ">New Post</Link>

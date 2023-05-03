@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "./Home.css";
+import "../style/Home.css";
 import blogFetch from "../axios/config";
 
 const Home = () => {

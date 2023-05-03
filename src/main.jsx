@@ -7,8 +7,10 @@ import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
 //import de paginas para seguir com as rotas 
 import Home from './routes/Home';
 import NewPost from './routes/NewPost';
+import Mod from './routes/Mod';
 
 import "./index.css";
+
 
 const router = createBrowserRouter([ // faz a criação das rotas de navegação das paginas .
   {
@@ -20,8 +22,13 @@ const router = createBrowserRouter([ // faz a criação das rotas de navegação
       {
         path: "/new",
         element: <NewPost/>,
-      }
-  ]}
+      },
+      {
+        path: "/mod",
+        element: <Mod/>, 
+      },
+    ]
+  }
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
