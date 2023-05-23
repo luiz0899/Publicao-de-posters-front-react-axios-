@@ -82,9 +82,10 @@ const Mod = () => {
                             <button
                                 className="btnAlt"
                                 onClick={() => {
+                                  
                                     setSelectedPost(post);
                                     setShowModal(true);
-                                    console.log("aqui");
+                                   
                                 }}
                             >
                                 Alterar

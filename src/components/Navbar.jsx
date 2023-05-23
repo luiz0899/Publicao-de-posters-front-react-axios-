@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import "./Navbar.css"
+import "../style/Navbar.css"
 
 const Navbar = () => {
   return (
@@ -9,7 +9,7 @@ const Navbar = () => {
         </h2>
         <ul className="fundo">
             <li>
-                <Link to = {'/mod'}>Mod</Link>
+                <Link to = {'/login'}>Mod</Link>
             </li>
             <li>
                 <Link to = {'/new'} className="newbtn ">New Post</Link>
