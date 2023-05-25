@@ -19,9 +19,9 @@ const Mod = () => {
     const [showModal, setShowModal] = useState(false);
     const [selectedPost, setSelectedPost] = useState(null);
 
-    const getTodos = async () => {
+    const getTodos = async () => {// atualização da pagina
         try {
-            const response = await blogFetch.get("/todos");
+            const response = await blogFetch.get("postcontroller/todos");
             const data = response.data;
             setPosts(data);
         } catch (error) {
@@ -29,13 +29,13 @@ const Mod = () => {
         }
     };
     
-    useEffect(() => {
+    useEffect(() => { // recarrega pagina
         getTodos();
     }, []);
 
-    function deletePost(id) {
+    function deletePost(id) { // deleta os poster
         blogFetch
-            .delete(`/${id}`)
+            .delete(`postcontroller/${id}`)
             .then((response) => {
                 console.log(response.data);
             })
@@ -46,7 +46,7 @@ const Mod = () => {
         setPosts(posts.filter((post) => post.id !== id));
     }
 
-    function editaPoster(event) {
+    function editaPoster(event) { // altera os poster
         event.preventDefault();
         const form = event.target;
         const updatedPost = {
@@ -55,7 +55,7 @@ const Mod = () => {
             conteudo: form.conteudo.value,
         };
         blogFetch
-            .put(`/alt`, updatedPost)
+            .put(`postcontroller/alt`, updatedPost)
             .then((response) => {
                 getTodos();
                 console.log(response.data);

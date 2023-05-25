@@ -15,7 +15,7 @@ const NewPost = () => {
     e.preventDefault();
 
     const post = JSON.parse(JSON.stringify({ titulo, conteudo, userId: 1 }));
-    await blogFetch.post("/save", post,
+    await blogFetch.post("postcontroller/save", post,
 
     );
 

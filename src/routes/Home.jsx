@@ -12,7 +12,7 @@ const Home = () => {
 
     try {
 
-      const response = await blogFetch.get("/todos");
+      const response = await blogFetch.get("postcontroller/todos");
 
       const data = response.data;
 

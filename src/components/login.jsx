@@ -14,7 +14,7 @@ export const Login = () => {
         try {
             
             await auth.authenticate( values.email, values.password )
-            navigate("/mod")
+            navigate("postcontroller/mod")
 
         } catch (error) {
             console.log(error);
@@ -25,7 +25,7 @@ export const Login = () => {
 
     return (
 
-    <div className="fundo">
+    <div className="fundoLogin">
 
         
         <Row className="linha"
@@ -34,7 +34,7 @@ export const Login = () => {
             <Col className="coluna">
 
                 <Form
-                  
+                   className="col"
                     onFinish={onFinish}
                 >
 
@@ -55,7 +55,7 @@ export const Login = () => {
 
                     </Form.Item>
                     <Form.Item >
-                        <Button type='primary' htmlType="submit" className="inButton">
+                        <Button  type='primary' htmlType="submit" className="inButton">
                             Sign In
                         </Button>
                     </Form.Item>
