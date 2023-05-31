@@ -18,6 +18,7 @@ export const AuthProvider = ({children}) => {
     } , []) 
 
     async function authenticate(email , password ) {
+        
         const response = await LoginRequest(email,password) 
 
         const payload = {token:response.token , email } ;
@@ -34,9 +35,11 @@ export const AuthProvider = ({children}) => {
     }
 
     return (
+        
         <AuthContext.Provider value={{...user , authenticate , logout }} >
             {children}
         </AuthContext.Provider>
+        
     )
 
 

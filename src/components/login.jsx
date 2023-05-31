@@ -3,7 +3,7 @@ import { useAuth } from "../context/AuthProvider/useAuth"
 import { useNavigate } from "react-router-dom"
 import "../style/login.css"
 
-export const Login = () => {
+export default function Login() {
 
     const auth = useAuth()
     const navigate = useNavigate();
@@ -14,7 +14,7 @@ export const Login = () => {
         try {
             
             await auth.authenticate( values.email, values.password )
-            navigate("postcontroller/mod")
+            navigate("/mod")
 
         } catch (error) {
             console.log(error);

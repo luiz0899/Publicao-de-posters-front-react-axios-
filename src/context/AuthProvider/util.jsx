@@ -25,7 +25,7 @@ export async function LoginRequest (email , password ) {
    
     try {
         const request = await blogFetch.post('postcontroller/autenticar',{email,password}) ;
-        console.log('aq')
+       
         return request.data;
 
     } catch (error) {
