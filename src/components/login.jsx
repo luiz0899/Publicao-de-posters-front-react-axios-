@@ -1,68 +1,49 @@
-import { Row, Col,  Input, Form, Button, message } from "antd"
-import { useAuth } from "../context/AuthProvider/useAuth"
-import { useNavigate } from "react-router-dom"
-import "../style/login.css"
+import { Row, Col, Input, Form, Button, message } from "antd";
+import { useNavigate } from "react-router-dom";
+import { LoginRequest } from "../utils/util"; 
+import { getEncrypted } from "../utils/crypto"; 
+import "../style/login.css";
 
 export default function Login() {
+  const navigate = useNavigate();
 
-    const auth = useAuth()
-    const navigate = useNavigate();
+  async function authenticate(email, password) {
+    const response = await LoginRequest(email, password);
 
-    async function onFinish (values) {
-        
-        console.log('aq luiz');
-        try {
-            
-            await auth.authenticate( values.email, values.password )
-            navigate("/mod")
+    const payload = { token: response.token, email };
+    const cryptoData = getEncrypted({ payload, permissao: 1 });
+    localStorage.setItem("user", cryptoData);
+  }
 
-        } catch (error) {
-            console.log(error);
-            message.error("invalid email or passoword")
-            
-        }
+  async function onFinish(values) {
+    try {
+      await authenticate(values.email, values.password);
+      navigate("/mod");
+    } catch (error) {
+      console.log(error);
+      message.error("Invalid email or password");
     }
+  }
 
-    return (
-
+  return (
     <div className="fundoLogin">
-
-        
-        <Row className="linha"
-         
-        >
-            <Col className="coluna">
-
-                <Form
-                   className="col"
-                    onFinish={onFinish}
-                >
-
-                    <Form.Item
-                        className="inEmail"
-                        label='Email'
-                        name='email'
-                    >
-                        <Input />
-
-                    </Form.Item>
-                    <Form.Item
-                        className="inSenha"
-                        label='password'
-                        name='password'
-                    >
-                        <Input.Password />
-
-                    </Form.Item>
-                    <Form.Item >
-                        <Button  type='primary' htmlType="submit" className="inButton">
-                            Sign In
-                        </Button>
-                    </Form.Item>
-                </Form>
-            </Col>
-        </Row>
+      <Row className="linha">
+        <Col className="coluna">
+          <Form className="col" onFinish={onFinish}>
+            <Form.Item className="inEmail" label="Email" name="email">
+              <Input />
+            </Form.Item>
+            <Form.Item className="inSenha" label="Password" name="password">
+              <Input.Password />
+            </Form.Item>
+            <Form.Item>
+              <Button type="primary" htmlType="submit" className="inButton">
+                Sign In
+              </Button>
+            </Form.Item>
+          </Form>
+        </Col>
+      </Row>
     </div>
-    )
-
+  );
 }

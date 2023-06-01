@@ -5,6 +5,10 @@ import NewPost from "../pages/NewPost";
 import RequireAuth from "../components/RequireAuth"
 import Login from "../components/login"
 
+const ROLES = {
+    admin: 1,
+  };
+
 export default function MainRoutes() {
     return (
         <BrowserRouter>
@@ -13,7 +17,7 @@ export default function MainRoutes() {
 
                 <Route path="/new" element={<NewPost />} />
                 <Route path="/login" element={<Login />} />
-                <Route element={<RequireAuth />}>
+                <Route element={<RequireAuth  allowedRoles={[ROLES.admin]}  />}>
                     <Route path="/mod" element={<Mod />} />
                 </Route>
                 <Route path="*" element={<Login />} />
